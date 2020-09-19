@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "AppBar"
 };
 </script>
 
@@ -33,6 +33,7 @@ export default {
   align-items: center;
   background: rgba(20, 20, 20, 0.8);
   box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.8);
+  z-index: 10;
 }
 .list {
   display: flex;

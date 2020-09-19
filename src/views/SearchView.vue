@@ -1,9 +1,17 @@
 <template>
-  <div>Search</div>
+  <search-provider>
+    <search-container />
+  </search-provider>
 </template>
 
 <script>
-export default {};
+import SearchProvider from "../providers/SearchProvider";
+import SearchContainer from "../container/SearchContainer";
+
+export default {
+  name: "SearchView",
+  components: { SearchProvider, SearchContainer }
+};
 </script>
 
 <style></style>

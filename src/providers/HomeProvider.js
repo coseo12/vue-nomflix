@@ -1,4 +1,4 @@
-import { provide, reactive, toRefs, readonly, onMounted, computed } from "vue";
+import { provide, reactive, toRefs, readonly, onMounted } from "vue";
 import { moviesApi } from "../api/index";
 
 export const MoviesSymbol = Symbol("MoviesSymbol");
@@ -11,7 +11,7 @@ const movies = reactive({
   loading: true
 });
 
-const useMovieDate = async () => {
+const fetchedMovies = async () => {
   try {
     const {
       data: { results: nowPlaying }
@@ -32,16 +32,10 @@ const useMovieDate = async () => {
   }
 };
 
-export const useGetLoading = () => computed(() => movies.loading);
-export const useGetNowPlaying = () => computed(() => movies.nowPlaying);
-export const useGetUpcoming = () => computed(() => movies.upcoming);
-export const useGetPopular = () => computed(() => movies.popular);
-export const useGetError = () => computed(() => movies.error);
-
 export default {
   setup() {
     onMounted(() => {
-      useMovieDate();
+      fetchedMovies();
     });
     provide(MoviesSymbol, toRefs(readonly(movies)));
   },

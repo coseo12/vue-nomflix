@@ -1,15 +1,15 @@
 <template>
-  <Header />
+  <app-bar />
   <router-view />
 </template>
 
 <script>
-import Header from "./components/layout/Header";
+import AppBar from "./layout/AppBar";
 
 export default {
   name: "App",
   components: {
-    Header
+    AppBar
   }
 };
 </script>

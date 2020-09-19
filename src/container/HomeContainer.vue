@@ -1,9 +1,9 @@
 <template>
-  <Loader v-if="getLoading" />
+  <c-loader v-if="loading" />
   <div v-else class="container">
-    <Section title="Now Playing">
-      <Poster
-        v-for="(movie, idx) in getNowPlaying"
+    <c-section v-if="nowPlaying && nowPlaying.length > 0" title="Now Playing">
+      <c-poster
+        v-for="(movie, idx) in nowPlaying"
         :key="idx"
         :id="Number(movie.id)"
         :title="movie.original_title"
@@ -12,10 +12,10 @@
         :isMovie="true"
         :year="Number(movie.release_date.substring(0, 4))"
       />
-    </Section>
-    <Section title="Upcoming Movies">
-      <Poster
-        v-for="(movie, idx) in getUpcoming"
+    </c-section>
+    <c-section v-if="upComing && upComing.length > 0" title="Upcoming Movies">
+      <c-poster
+        v-for="(movie, idx) in upComing"
         :key="idx"
         :id="Number(movie.id)"
         :title="movie.original_title"
@@ -24,10 +24,10 @@
         :isMovie="true"
         :year="Number(movie.release_date.substring(0, 4))"
       />
-    </Section>
-    <Section title="Popular Movies">
-      <Poster
-        v-for="(movie, idx) in getPopular"
+    </c-section>
+    <c-section v-if="popular && popular.length > 0" title="Popular Movies">
+      <c-poster
+        v-for="(movie, idx) in popular"
         :key="idx"
         :id="Number(movie.id)"
         :title="movie.original_title"
@@ -36,37 +36,30 @@
         :isMovie="true"
         :year="Number(movie.release_date.substring(0, 4))"
       />
-    </Section>
+    </c-section>
   </div>
 </template>
 
 <script>
-import Loader from "../common/Loader";
-import Section from "../common/Section";
-import Poster from "../common/Poster";
-import {
-  useGetLoading,
-  useGetNowPlaying,
-  useGetUpcoming,
-  useGetPopular,
-  useGetError
-} from "../../providers/HomeProvider";
+import { inject } from "vue";
+import CLoader from "../components/CLoader";
+import CSection from "../components/CSection";
+import CPoster from "../components/CPoster";
+import { MoviesSymbol } from "../providers/HomeProvider";
 
 export default {
-  name: "HomeComponent",
+  name: "HomeContainer",
   components: {
-    Loader,
-    Section,
-    Poster
+    CLoader,
+    CSection,
+    CPoster
   },
   setup() {
-    const getLoading = useGetLoading();
-    const getNowPlaying = useGetNowPlaying();
-    const getUpcoming = useGetUpcoming();
-    const getPopular = useGetPopular();
-    const getError = useGetError();
+    const { loading, nowPlaying, upComing, popular, error } = inject(
+      MoviesSymbol
+    );
 
-    return { getLoading, getNowPlaying, getUpcoming, getPopular, getError };
+    return { loading, nowPlaying, upComing, popular, error };
   }
 };
 </script>

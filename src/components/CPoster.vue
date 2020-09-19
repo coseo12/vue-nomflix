@@ -8,7 +8,7 @@
             ${
               imageUrl
                 ? `https://image.tmdb.org/t/p/w300${imageUrl}`
-                : require('../../assets/noPosterSmall.png')
+                : require('../assets/noPosterSmall.png')
             }
           )`
         }"
@@ -34,7 +34,7 @@ const useDetail = ({ isMovies, id }, { route }) => () => {
 };
 
 export default {
-  name: "Poster",
+  name: "CPoster",
   props: {
     id: {
       type: Number,

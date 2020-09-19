@@ -1,18 +1,18 @@
 <template>
   <home-provider>
-    <home-component></home-component>
+    <home-container></home-container>
   </home-provider>
 </template>
 
 <script>
 import HomeProvider from "../providers/HomeProvider";
-import HomeComponent from "../components/container/HomeComponent";
+import HomeContainer from "../container/HomeContainer";
 
 export default {
   name: "HomeView",
   components: {
     HomeProvider,
-    HomeComponent
+    HomeContainer
   }
 };
 </script>
