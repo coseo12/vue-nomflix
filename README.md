@@ -1,5 +1,7 @@
 # vue-nomflix
 
+vue3.0 Composition API
+
 ## Project setup
 ```
 npm install
