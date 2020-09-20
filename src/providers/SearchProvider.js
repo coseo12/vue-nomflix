@@ -8,7 +8,9 @@ const search = reactive({
   tvResults: null,
   searchTerm: null,
   error: null,
-  loading: false
+  loading: false,
+  handleSubmit: null,
+  updateTerm: null
 });
 
 const fetchedSearchByTerm = async () => {
@@ -29,10 +31,10 @@ const fetchedSearchByTerm = async () => {
   }
 };
 
-export const useHandleSubmit = () => () => {
+search.handleSubmit = () => {
   if (search.searchTerm !== "") fetchedSearchByTerm();
 };
-export const useUpdateTerm = () => event => {
+search.updateTerm = event => {
   const {
     target: { value }
   } = event;

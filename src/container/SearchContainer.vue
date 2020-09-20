@@ -60,11 +60,7 @@ import CLoader from "../components/CLoader";
 import CSection from "../components/CSection";
 import CPoster from "../components/CPoster";
 import CMessage from "../components/CMessage";
-import {
-  SearchSymbol,
-  useHandleSubmit,
-  useUpdateTerm
-} from "../providers/SearchProvider";
+import { SearchSymbol } from "../providers/SearchProvider";
 
 export default {
   name: "SearchContainer",
@@ -75,11 +71,15 @@ export default {
     CMessage
   },
   setup() {
-    const { loading, movieResults, tvResults, searchTerm, error } = inject(
-      SearchSymbol
-    );
-    const handleSubmit = useHandleSubmit();
-    const updateTerm = useUpdateTerm();
+    const {
+      loading,
+      movieResults,
+      tvResults,
+      searchTerm,
+      error,
+      handleSubmit,
+      updateTerm
+    } = inject(SearchSymbol);
 
     return {
       handleSubmit,
