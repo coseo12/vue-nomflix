@@ -2,6 +2,8 @@
 
 vue3.0 Composition API
 
+[https://coseo12.github.io/vue-nomflix/](https://coseo12.github.io/vue-nomflix/)
+
 ## Project setup
 ```
 npm install
