@@ -1,3 +1,4 @@
-publicPath: process.env.NODE_ENV === 'production'
-? '/vue-nomflix/'
-: '/'
+module.exports = {
+  publicPath:
+    process.env.NODE_ENV === "production" ? "/production-sub-path/" : "/"
+};
