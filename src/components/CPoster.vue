@@ -28,9 +28,11 @@
 </template>
 
 <script>
-const useDetail = ({ isMovies, id }, { route }) => () => {
-  if (isMovies) route.push(`/movie/${id}`);
-  else route.push(`/show/${id}`);
+import Router from "../router";
+
+const useDetail = ({ isMovie, id }, { push }) => () => {
+  if (isMovie) push(`/movie/${id}`);
+  else push(`/show/${id}`);
 };
 
 export default {
@@ -57,13 +59,13 @@ export default {
       type: Number,
       required: false
     },
-    isMovies: {
+    isMovie: {
       type: Boolean,
       required: false
     }
   },
-  setup(props, context) {
-    const toDetail = useDetail(props, context);
+  setup(props) {
+    const toDetail = useDetail(props, Router);
     return {
       toDetail
     };
