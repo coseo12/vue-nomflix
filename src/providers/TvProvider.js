@@ -1,43 +1,55 @@
 import { provide, reactive, toRefs, readonly, onMounted } from "vue";
+import { useState } from "../utils";
 import { tvApi } from "../api/index";
 
 export const TvSymbol = Symbol("TvSymbol");
 
-const tv = reactive({
-  topRated: null,
-  airingToday: null,
-  popular: null,
-  error: null,
-  loading: true
-});
+const [topRated, setTopRated] = useState(null);
+const [airingToday, setAiringToday] = useState(null);
+const [popular, setPopular] = useState(null);
+const [error, setError] = useState(null);
+const [loading, setLoading] = useState(true);
 
 const fetchedTvData = async () => {
   try {
     const {
-      data: { results: topRated }
+      data: { results: topRatedData }
     } = await tvApi.topRated();
     const {
-      data: { results: airingToday }
+      data: { results: airingTodayData }
     } = await tvApi.airingToday();
     const {
-      data: { results: popular }
+      data: { results: popularData }
     } = await tvApi.popular();
-    tv.topRated = topRated;
-    tv.airingToday = airingToday;
-    tv.popular = popular;
-  } catch (error) {
-    tv.error = `Can't find Tv information.`;
+    setTopRated(topRatedData);
+    setAiringToday(airingTodayData);
+    setPopular(popularData);
+  } catch (e) {
+    setError(`Can't find Tv information.`);
   } finally {
-    tv.loading = false;
+    setLoading(false);
   }
 };
+
+const use = reactive({
+  topRated,
+  airingToday,
+  popular,
+  error,
+  loading,
+  setTopRated,
+  setAiringToday,
+  setPopular,
+  setError,
+  setLoading
+});
 
 export default {
   setup() {
     onMounted(() => {
       fetchedTvData();
     });
-    provide(TvSymbol, toRefs(readonly(tv)));
+    provide(TvSymbol, toRefs(readonly(use)));
   },
   render() {
     return this.$slots.default();

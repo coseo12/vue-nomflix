@@ -2,6 +2,7 @@
   <c-loader v-if="loading" />
   <div v-else class="container">
     <div
+      v-if="result.backdrop_path"
       class="backdrop"
       :style="{
         backgroundImage: `url(https://image.tmdb.org/t/p/original${result.backdrop_path})`

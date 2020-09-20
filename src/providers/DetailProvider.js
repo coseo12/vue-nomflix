@@ -1,42 +1,49 @@
 import { provide, reactive, toRefs, readonly, onMounted } from "vue";
 import Router from "../router";
+import { useState } from "../utils";
 import { moviesApi, tvApi } from "../api/index";
 
 export const DetailSymbol = Symbol("DetailSymbol");
 
-const detail = reactive({
-  result: null,
-  current: "/Production",
-  isMovie: true,
-  loading: true,
-  parseId: null,
-  error: null
-});
+const [result, setResult] = useState(null);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
 
 const fetchedDetail = async ({ currentRoute: { value } }) => {
-  detail.isMovie = value.path.includes("/movie");
-  detail.parseId = parseInt(value.params.id);
+  const isMovie = value.path.includes("/movie");
+  const parseId = parseInt(value.params.id);
+  setResult(null);
+  setLoading(true);
   try {
-    if (detail.isMovie) {
-      const { data: result } = await moviesApi.movieDetail(detail.parseId);
-      detail.result = result;
+    if (isMovie) {
+      const { data: resultData } = await moviesApi.movieDetail(parseId);
+      setResult(resultData);
     } else {
-      const { data: result } = await tvApi.showDetail(detail.parseId);
-      detail.result = result;
+      const { data: resultData } = await tvApi.showDetail(parseId);
+      setResult(resultData);
     }
-  } catch (error) {
-    detail.error = `Can't find anything.`;
+  } catch (e) {
+    setError(`Can't find anything.`);
   } finally {
-    detail.loading = false;
+    setLoading(false);
   }
 };
+
+const use = reactive({
+  result,
+  loading,
+  error,
+  setResult,
+  setLoading,
+  setError
+});
 
 export default {
   setup() {
     onMounted(() => {
       fetchedDetail(Router);
     });
-    provide(DetailSymbol, toRefs(readonly(detail)));
+    provide(DetailSymbol, toRefs(readonly(use)));
   },
   render() {
     return this.$slots.default();

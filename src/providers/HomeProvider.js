@@ -1,43 +1,54 @@
 import { provide, reactive, toRefs, readonly, onMounted } from "vue";
+import { useState } from "../utils";
 import { moviesApi } from "../api/index";
 
 export const MoviesSymbol = Symbol("MoviesSymbol");
 
-const movies = reactive({
-  nowPlaying: null,
-  upcoming: null,
-  popular: null,
-  error: null,
-  loading: true
-});
+const [nowPlaying, setNowPlaying] = useState(null);
+const [upcoming, setUpcoming] = useState(null);
+const [popular, setPopular] = useState(null);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
 
 const fetchedMovies = async () => {
   try {
     const {
-      data: { results: nowPlaying }
+      data: { results: nowPlayingData }
     } = await moviesApi.nowPlaying();
     const {
-      data: { results: upcoming }
+      data: { results: upcomingData }
     } = await moviesApi.upcoming();
     const {
-      data: { results: popular }
+      data: { results: popularData }
     } = await moviesApi.popular();
-    movies.nowPlaying = nowPlaying;
-    movies.upcoming = upcoming;
-    movies.popular = popular;
-  } catch (error) {
-    movies.error = `Can't find movies information.`;
+    setNowPlaying(nowPlayingData);
+    setUpcoming(upcomingData);
+    setPopular(popularData);
+  } catch (e) {
+    setError(`Can't find movies information.`);
   } finally {
-    movies.loading = false;
+    setLoading(false);
   }
 };
+
+const use = reactive({
+  nowPlaying,
+  upcoming,
+  popular,
+  loading,
+  error,
+  setPopular,
+  setUpcoming,
+  setNowPlaying,
+  setError
+});
 
 export default {
   setup() {
     onMounted(() => {
       fetchedMovies();
     });
-    provide(MoviesSymbol, toRefs(readonly(movies)));
+    provide(MoviesSymbol, toRefs(readonly(use)));
   },
   render() {
     return this.$slots.default();

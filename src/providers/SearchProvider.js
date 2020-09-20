@@ -1,49 +1,60 @@
 import { provide, reactive, toRefs, readonly } from "vue";
+import { useState } from "../utils";
 import { moviesApi, tvApi } from "../api/index";
 
 export const SearchSymbol = Symbol("SearchSymbol");
 
-const search = reactive({
-  movieResults: null,
-  tvResults: null,
-  searchTerm: null,
-  error: null,
-  loading: false,
-  handleSubmit: null,
-  updateTerm: null
-});
+const [movieResults, setMovieResults] = useState(null);
+const [tvResults, setTvResults] = useState(null);
+const [searchTerm, setSearchTerm] = useState(null);
+const [error, setError] = useState(null);
+const [loading, setLoading] = useState(false);
 
 const fetchedSearchByTerm = async () => {
-  search.loading = true;
+  setLoading(true);
   try {
     const {
-      data: { results: movieResults }
-    } = await moviesApi.search(search.searchTerm);
+      data: { results: movieResultsData }
+    } = await moviesApi.search(searchTerm.value);
     const {
-      data: { results: tvResults }
-    } = await tvApi.search(search.searchTerm);
-    search.movieResults = movieResults;
-    search.tvResults = tvResults;
-  } catch (error) {
-    search.error = `Can't find results.`;
+      data: { results: tvResultsData }
+    } = await tvApi.search(searchTerm);
+    setMovieResults(movieResultsData);
+    setTvResults(tvResultsData);
+  } catch (e) {
+    setError(`Can't find results.`);
   } finally {
-    search.loading = false;
+    setLoading(false);
   }
 };
 
-search.handleSubmit = () => {
-  if (search.searchTerm !== "") fetchedSearchByTerm();
+const handleSubmit = () => {
+  if (searchTerm.value !== "") fetchedSearchByTerm();
 };
-search.updateTerm = event => {
+const updateTerm = event => {
   const {
     target: { value }
   } = event;
-  search.searchTerm = value;
+  setSearchTerm(value);
 };
+
+const use = reactive({
+  movieResults,
+  tvResults,
+  loading,
+  error,
+  setMovieResults,
+  setTvResults,
+  setSearchTerm,
+  setError,
+  setLoading,
+  handleSubmit,
+  updateTerm
+});
 
 export default {
   setup() {
-    provide(SearchSymbol, toRefs(readonly(search)));
+    provide(SearchSymbol, toRefs(readonly(use)));
   },
   render() {
     return this.$slots.default();
