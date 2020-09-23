@@ -1,5 +1,5 @@
 <template>
-  <div class="container" @click="toDetail">
+  <div class="container" @click="toDetail(props, Router)">
     <div class="image-container">
       <div
         class="image"
@@ -29,11 +29,7 @@
 
 <script>
 import Router from "@/router";
-
-const useDetail = ({ isMovie, id }, { push }) => () => {
-  if (isMovie) push(`/movie/${id}`);
-  else push(`/show/${id}`);
-};
+import usePoster from "@/composables/common/contents/usePoster";
 
 export default {
   name: "CPoster",
@@ -65,9 +61,12 @@ export default {
     }
   },
   setup(props) {
-    const toDetail = useDetail(props, Router);
+    const { toDetail } = usePoster();
+
     return {
-      toDetail
+      toDetail,
+      props,
+      Router
     };
   }
 };
