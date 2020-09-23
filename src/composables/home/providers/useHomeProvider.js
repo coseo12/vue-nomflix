@@ -3,7 +3,7 @@ import { moviesApi } from "@/api";
 
 export default function useHomeProvider() {
   const [nowPlaying, setNowPlaying] = useState(null);
-  const [upcoming, setUpcoming] = useState(null);
+  const [upComing, setUpComing] = useState(null);
   const [popular, setPopular] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,13 +14,13 @@ export default function useHomeProvider() {
         data: { results: nowPlayingData }
       } = await moviesApi.nowPlaying();
       const {
-        data: { results: upcomingData }
+        data: { results: upComingData }
       } = await moviesApi.upcoming();
       const {
         data: { results: popularData }
       } = await moviesApi.popular();
       setNowPlaying(nowPlayingData);
-      setUpcoming(upcomingData);
+      setUpComing(upComingData);
       setPopular(popularData);
     } catch (e) {
       setError(`Can't find movies information.`);
@@ -31,8 +31,8 @@ export default function useHomeProvider() {
   return {
     nowPlaying,
     setNowPlaying,
-    upcoming,
-    setUpcoming,
+    upComing,
+    setUpComing,
     popular,
     setPopular,
     loading,
