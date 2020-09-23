@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { inject } from "vue";
+import { inject, onMounted } from "vue";
 import CLoader from "../../common/contents/CLoader";
 import CSection from "../../common/contents/CSection";
 import CPoster from "../../common/contents/CPoster";
@@ -58,7 +58,18 @@ export default {
     CPoster
   },
   setup() {
-    const { loading, topRated, airingToday, popular, error } = inject(TvSymbol);
+    const {
+      loading,
+      topRated,
+      airingToday,
+      popular,
+      error,
+      fetchedTvData
+    } = inject(TvSymbol);
+
+    onMounted(() => {
+      fetchedTvData.value();
+    });
 
     return { loading, topRated, airingToday, popular, error };
   }

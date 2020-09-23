@@ -1,3 +1,8 @@
+<template>
+  <slot />
+</template>
+
+<script>
 import { provide, reactive, toRefs, readonly } from "vue";
 import useHomeProvider from "@/composables/home/providers/useHomeProvider";
 
@@ -10,8 +15,6 @@ const use = reactive({
 export default {
   setup() {
     provide(MoviesSymbol, toRefs(readonly(use)));
-  },
-  render() {
-    return this.$slots.default();
   }
 };
+</script>
