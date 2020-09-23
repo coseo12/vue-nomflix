@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import TvContainer from "../container/TvContainer";
-import TvProvider from "../providers/TvProvider";
+import TvContainer from "../components/tv/containers/TvContainer";
+import TvProvider from "../components/tv/providers/TvProvider";
 
 export default {
   name: "TvView",

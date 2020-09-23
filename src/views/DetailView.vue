@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import DetailContainer from "../container/DetailContainer";
-import DetailProvider from "../providers/DetailProvider";
+import DetailContainer from "@/components/detail/containers/DetailContainer";
+import DetailProvider from "@/components/detail/providers/DetailProvider";
 
 export default {
   name: "DetailView",

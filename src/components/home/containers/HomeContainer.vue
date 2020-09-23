@@ -41,10 +41,10 @@
 </template>
 
 <script>
-import { inject } from "vue";
-import CLoader from "../components/CLoader";
-import CSection from "../components/CSection";
-import CPoster from "../components/CPoster";
+import { inject, onMounted } from "vue";
+import CLoader from "../../common/contents/CLoader";
+import CSection from "../../common/contents/CSection";
+import CPoster from "../../common/contents/CPoster";
 import { MoviesSymbol } from "../providers/HomeProvider";
 
 export default {
@@ -55,9 +55,18 @@ export default {
     CPoster
   },
   setup() {
-    const { loading, nowPlaying, upComing, popular, error } = inject(
-      MoviesSymbol
-    );
+    const {
+      loading,
+      nowPlaying,
+      upComing,
+      popular,
+      error,
+      fetchedMovies
+    } = inject(MoviesSymbol);
+
+    onMounted(() => {
+      fetchedMovies.value();
+    });
 
     return { loading, nowPlaying, upComing, popular, error };
   }

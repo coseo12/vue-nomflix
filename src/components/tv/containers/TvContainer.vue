@@ -45,9 +45,9 @@
 
 <script>
 import { inject } from "vue";
-import CLoader from "../components/CLoader";
-import CSection from "../components/CSection";
-import CPoster from "../components/CPoster";
+import CLoader from "../../common/contents/CLoader";
+import CSection from "../../common/contents/CSection";
+import CPoster from "../../common/contents/CPoster";
 import { TvSymbol } from "../providers/TvProvider";
 
 export default {

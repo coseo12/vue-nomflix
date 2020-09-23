@@ -85,7 +85,7 @@
 
 <script>
 import { inject } from "vue";
-import CLoader from "../components/CLoader";
+import CLoader from "../../common/contents/CLoader";
 import { DetailSymbol } from "../providers/DetailProvider";
 export default {
   name: "DetailContainer",

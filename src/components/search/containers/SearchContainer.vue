@@ -56,10 +56,10 @@
 
 <script>
 import { inject } from "vue";
-import CLoader from "../components/CLoader";
-import CSection from "../components/CSection";
-import CPoster from "../components/CPoster";
-import CMessage from "../components/CMessage";
+import CLoader from "../../common/contents/CLoader";
+import CSection from "../../common/contents/CSection";
+import CPoster from "../../common/contents/CPoster";
+import CMessage from "../../common/contents/CMessage";
 import { SearchSymbol } from "../providers/SearchProvider";
 
 export default {

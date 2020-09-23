@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import SearchProvider from "../providers/SearchProvider";
-import SearchContainer from "../container/SearchContainer";
+import SearchProvider from "../components/search/providers/SearchProvider";
+import SearchContainer from "../components/search/containers/SearchContainer";
 
 export default {
   name: "SearchView",

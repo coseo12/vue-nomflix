@@ -1,7 +1,7 @@
 import { provide, reactive, toRefs, readonly, onMounted } from "vue";
-import Router from "../router";
-import { useState } from "../utils";
-import { moviesApi, tvApi } from "../api/index";
+import Router from "@/router";
+import { useState } from "@/utils";
+import { moviesApi, tvApi } from "@/api";
 
 export const DetailSymbol = Symbol("DetailSymbol");
 

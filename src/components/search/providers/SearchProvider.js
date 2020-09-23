@@ -1,6 +1,6 @@
 import { provide, reactive, toRefs, readonly } from "vue";
-import { useState } from "../utils";
-import { moviesApi, tvApi } from "../api/index";
+import { useState } from "../../../utils";
+import { moviesApi, tvApi } from "../../../api";
 
 export const SearchSymbol = Symbol("SearchSymbol");
 

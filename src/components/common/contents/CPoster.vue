@@ -8,7 +8,7 @@
             ${
               imageUrl
                 ? `https://image.tmdb.org/t/p/w300${imageUrl}`
-                : require('../assets/noPosterSmall.png')
+                : require('@/assets/noPosterSmall.png')
             }
           )`
         }"
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import Router from "../router";
+import Router from "@/router";
 
 const useDetail = ({ isMovie, id }, { push }) => () => {
   if (isMovie) push(`/movie/${id}`);

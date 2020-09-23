@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import HomeProvider from "../providers/HomeProvider";
-import HomeContainer from "../container/HomeContainer";
+import HomeProvider from "@/components/home/providers/HomeProvider";
+import HomeContainer from "@/components/home/containers/HomeContainer";
 
 export default {
   name: "HomeView",

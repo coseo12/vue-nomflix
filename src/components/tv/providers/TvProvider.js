@@ -1,6 +1,6 @@
 import { provide, reactive, toRefs, readonly, onMounted } from "vue";
-import { useState } from "../utils";
-import { tvApi } from "../api/index";
+import { useState } from "@/utils";
+import { tvApi } from "@/api";
 
 export const TvSymbol = Symbol("TvSymbol");
 
