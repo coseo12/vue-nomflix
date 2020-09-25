@@ -3,18 +3,14 @@
 </template>
 
 <script>
-import { provide, reactive, toRefs, readonly } from "vue";
+import { provide, toRefs, readonly } from "vue";
 import useSearchProvider from "@/composables/search/providers/useSearchProvider";
 
 export const SearchSymbol = Symbol("SearchSymbol");
 
-const use = reactive({
-  ...useSearchProvider()
-});
-
 export default {
   setup() {
-    provide(SearchSymbol, toRefs(readonly(use)));
+    provide(SearchSymbol, toRefs(readonly(useSearchProvider())));
   }
 };
 </script>

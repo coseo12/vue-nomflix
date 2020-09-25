@@ -3,18 +3,14 @@
 </template>
 
 <script>
-import { provide, reactive, toRefs, readonly } from "vue";
+import { provide, toRefs, readonly } from "vue";
 import useHomeProvider from "@/composables/home/providers/useHomeProvider";
 
 export const MoviesSymbol = Symbol("MoviesSymbol");
 
-const use = reactive({
-  ...useHomeProvider()
-});
-
 export default {
   setup() {
-    provide(MoviesSymbol, toRefs(readonly(use)));
+    provide(MoviesSymbol, toRefs(readonly(useHomeProvider())));
   }
 };
 </script>
