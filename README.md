@@ -9,7 +9,9 @@ create .env file
 use API [https://www.themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api)
 
 NODE_PATH=src
+
 VUE_APP_API_KEY=API KEY <- Here
+
 VUE_APP_LANGUAGE=en-US
 
 ## Project setup
