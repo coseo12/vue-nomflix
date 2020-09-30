@@ -41,11 +41,11 @@
 </template>
 
 <script>
-import { inject, onMounted } from "vue";
-import CLoader from "../../common/contents/CLoader";
-import CSection from "../../common/contents/CSection";
-import CPoster from "../../common/contents/CPoster";
-import { MoviesSymbol } from "../providers/HomeProvider";
+import { onMounted } from "vue";
+import CLoader from "../components/CLoader";
+import CSection from "../components/CSection";
+import CPoster from "../components/CPoster";
+import useHome from "../composables/useHome";
 
 export default {
   name: "HomeContainer",
@@ -56,16 +56,16 @@ export default {
   },
   setup() {
     const {
+      fetchedMovies,
       loading,
       nowPlaying,
       upComing,
       popular,
-      error,
-      fetchedMovies
-    } = inject(MoviesSymbol);
+      error
+    } = useHome();
 
     onMounted(() => {
-      fetchedMovies.value();
+      fetchedMovies();
     });
 
     return { loading, nowPlaying, upComing, popular, error };

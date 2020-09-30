@@ -84,10 +84,10 @@
 </template>
 
 <script>
-import { inject, onMounted } from "vue";
+import { onMounted } from "vue";
 import Router from "@/router";
-import CLoader from "@/components/common/contents/CLoader";
-import { DetailSymbol } from "../providers/DetailProvider";
+import CLoader from "@/components/CLoader";
+import useDetail from "../composables/useDetail";
 
 export default {
   name: "DetailContainer",
@@ -95,10 +95,9 @@ export default {
     CLoader
   },
   setup() {
-    const { loading, result, error, fetchedDetail } = inject(DetailSymbol);
-
+    const { fetchedDetail, loading, result, error } = useDetail();
     onMounted(() => {
-      fetchedDetail.value(Router);
+      fetchedDetail(Router);
     });
 
     return { loading, result, error };

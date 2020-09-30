@@ -1,18 +1,14 @@
 <template>
-  <detail-provider>
-    <detail-container />
-  </detail-provider>
+  <detail-container />
 </template>
 
 <script>
-import DetailContainer from "@/components/detail/containers/DetailContainer";
-import DetailProvider from "@/components/detail/providers/DetailProvider";
+import DetailContainer from "@/components/DetailContainer";
 
 export default {
   name: "DetailView",
   components: {
-    DetailContainer,
-    DetailProvider
+    DetailContainer
   }
 };
 </script>

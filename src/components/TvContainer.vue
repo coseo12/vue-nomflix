@@ -44,11 +44,11 @@
 </template>
 
 <script>
-import { inject, onMounted } from "vue";
-import CLoader from "../../common/contents/CLoader";
-import CSection from "../../common/contents/CSection";
-import CPoster from "../../common/contents/CPoster";
-import { TvSymbol } from "../providers/TvProvider";
+import { onMounted } from "vue";
+import CLoader from "../components/CLoader";
+import CSection from "../components/CSection";
+import CPoster from "../components/CPoster";
+import useTv from "../composables/useTv";
 
 export default {
   name: "TvContainer",
@@ -65,10 +65,10 @@ export default {
       popular,
       error,
       fetchedTvData
-    } = inject(TvSymbol);
+    } = useTv();
 
     onMounted(() => {
-      fetchedTvData.value();
+      fetchedTvData();
     });
 
     return { loading, topRated, airingToday, popular, error };

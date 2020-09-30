@@ -29,7 +29,7 @@
 
 <script>
 import Router from "@/router";
-import usePoster from "@/composables/common/contents/usePoster";
+import usePoster from "@/composables/usePoster";
 
 export default {
   name: "CPoster",

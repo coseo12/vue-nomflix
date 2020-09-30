@@ -1,18 +1,14 @@
 <template>
-  <tv-provider>
-    <tv-container />
-  </tv-provider>
+  <tv-container />
 </template>
 
 <script>
-import TvContainer from "../components/tv/containers/TvContainer";
-import TvProvider from "../components/tv/providers/TvProvider";
+import TvContainer from "../components/TvContainer";
 
 export default {
   name: "TvView",
   components: {
-    TvContainer,
-    TvProvider
+    TvContainer
   }
 };
 </script>
