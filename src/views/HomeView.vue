@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import { onMounted } from "vue";
 import CLoader from "../components/CLoader";
 import CSection from "../components/CSection";
 import CPoster from "../components/CPoster";
@@ -55,18 +54,7 @@ export default {
     CPoster
   },
   setup() {
-    const {
-      fetchedMovies,
-      loading,
-      nowPlaying,
-      upComing,
-      popular,
-      error
-    } = useHome();
-
-    onMounted(() => {
-      fetchedMovies();
-    });
+    const { loading, nowPlaying, upComing, popular, error } = useHome();
 
     return { loading, nowPlaying, upComing, popular, error };
   }

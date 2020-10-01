@@ -1,3 +1,4 @@
+import { onMounted } from "vue";
 import { useState } from "@/utils";
 import { tvApi } from "@/api";
 
@@ -28,6 +29,10 @@ export default function useTvProvider() {
       setLoading(false);
     }
   };
+
+  onMounted(() => {
+    fetchedTvData();
+  });
 
   return {
     topRated,

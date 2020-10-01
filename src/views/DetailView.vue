@@ -84,8 +84,6 @@
 </template>
 
 <script>
-import { onMounted } from "vue";
-import Router from "@/router";
 import CLoader from "@/components/CLoader";
 import useDetail from "../composables/useDetail";
 
@@ -95,11 +93,7 @@ export default {
     CLoader
   },
   setup() {
-    const { fetchedDetail, loading, result, error } = useDetail();
-    onMounted(() => {
-      fetchedDetail(Router);
-    });
-
+    const { loading, result, error } = useDetail();
     return { loading, result, error };
   }
 };

@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import { onMounted } from "vue";
 import CLoader from "../components/CLoader";
 import CSection from "../components/CSection";
 import CPoster from "../components/CPoster";
@@ -58,18 +57,7 @@ export default {
     CPoster
   },
   setup() {
-    const {
-      loading,
-      topRated,
-      airingToday,
-      popular,
-      error,
-      fetchedTvData
-    } = useTv();
-
-    onMounted(() => {
-      fetchedTvData();
-    });
+    const { loading, topRated, airingToday, popular, error } = useTv();
 
     return { loading, topRated, airingToday, popular, error };
   }

@@ -1,3 +1,4 @@
+import { onMounted } from "vue";
 import { useState } from "@/utils";
 import { moviesApi } from "@/api";
 
@@ -28,6 +29,11 @@ export default function useHomeProvider() {
       setLoading(false);
     }
   };
+
+  onMounted(() => {
+    fetchedMovies();
+  });
+
   return {
     nowPlaying,
     setNowPlaying,

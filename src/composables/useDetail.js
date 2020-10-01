@@ -1,3 +1,5 @@
+import { onMounted } from "vue";
+import Router from "@/router";
 import { useState } from "@/utils";
 import { moviesApi, tvApi } from "@/api";
 
@@ -25,6 +27,10 @@ export default function useDetailProvider() {
       setLoading(false);
     }
   };
+
+  onMounted(() => {
+    fetchedDetail(Router);
+  });
 
   return {
     result,
