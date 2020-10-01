@@ -29,7 +29,6 @@
 
 <script>
 import Router from "@/router";
-import usePoster from "@/composables/usePoster";
 
 export default {
   name: "CPoster",
@@ -61,7 +60,10 @@ export default {
     }
   },
   setup(props) {
-    const { toDetail } = usePoster();
+    const toDetail = ({ isMovie, id }, { push }) => {
+      if (isMovie) push(`/movie/${id}`);
+      else push(`/show/${id}`);
+    };
 
     return {
       toDetail,
